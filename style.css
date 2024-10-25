@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    padding: 3px;
+    overflow: hidden;
+    user-select: none;
+    font-family: Helvetica Neue, helvetica, arial, Hiragino Kaku Gothic ProN, Meiryo, MS Gothic;;
+}
+.main{
+    /* position: relative; */
+    height: 100%;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+}
+
+.whole_container{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 32% auto;
+    grid-template-rows: 10% 75% auto;
+    grid-template-areas: "header header"
+                        "left right"
+                        "footer footer";
+    
+    gap: 7px;
+    /* background-color: blue; */
+}
+
+.parts{
+    border-radius: 3px;
+}
+#header{
+    grid-area: header;
+    justify-items: center;
+    background: grey;
+    /* height: 100%; */
+    /* width: 100%; */
+    /* right: 0; */
+    /* height: 36%; */
+    /* position: absolute;
+    position: fixed; */
+}
+#left_content{
+    grid-area: left;
+    background: #121212;
+    /* position: relative;
+    height: 400px;
+    width: 440px; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+}
+
+.top_bottom{
+    background-color: blue;
+}
+#create_playlist{
+    height: 60%;
+    overflow: hidden;
+}
+#create_playlist:hover{
+    overflow-y: scroll;
+}
+#create_playlist::-webkit-scrollbar{
+    width: 0.5em;
+    height: 1em;
+
+}
+#create_playlist::-webkit-scrollbar-thumb{
+    background-color: black;
+}
+
+#left_bot_content{
+    height: 40%;
+}
+
+#right_content{
+    grid-area: right;
+    justify-items: center;
+    background: lightseagreen;
+    /* position: relative;
+    height: 400px; */
+
+}
+#footer_signup{
+    grid-area: footer;
+    justify-items: center;
+    background: lightsteelblue;
+    position: absolute;
+    /* top: 0; */
+    height: 100%;
+    width: 100%;
+    /* bottom: 0px; */
+}
+
