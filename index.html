@@ -6,29 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/7b25ac5d2b.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div class="main">
       <div class="whole_container">
         <div class="parts" id="header"><h1>Header</h1></div>
         <div class="parts" id="left_content">
-            <div class="top_bottom" id="left_top_content">
-                <div class="library">
-                    <h1>1</h1>
-                </div>
-                <div class="scroll_part">
-                    <div class="create_browse" id="create_playlist">
-                        <h4>Create your first playlist</h4>
-                        <p>It's easy, we'll help you</p>
-                        <button>Create playlist</button>
-                    </div>
-                    <div class="create_browse" id="browse_podcast">
-                        <h4>Let's find some podcast to follow</h4>
-                        <p>It's easy, we'll help you</p>
-                    </div>
-                </div>
+          <div class="top_bottom" id="left_top_content">
+            <div class="library">
+              <div id="library_first">
+                <img src="Images/library.svg" alt="" />
+                <h3>Your library</h3>
+              </div>
+              <i class="fa-solid fa-plus plus_icon"></i>
             </div>
-            <div class="top_bottom" id="left_bot_content"><h1>2</h1></div>
+            <div class="scroll_part">
+              <div class="create_browse" id="create_playlist">
+                <div class="create_playlist_text">
+                  <h4>Create your first playlist</h4>
+                  <p>It's easy, we'll help you</p>
+                </div>
+                <button class="bttn" id="bttn1">Create playlist</button>
+              </div>
+              <div class="create_browse" id="browse_podcast">
+                <div class="create_playlist_text">
+                  <h4>Let's find some podcast to follow</h4>
+                  <p>It's easy, we'll help you</p>
+                </div>
+                <button class="bttn" id="bttn2">Broswse podcast</button>
+              </div>
+            </div>
+          </div>
+          <div class="top_bottom" id="left_bot_content">
+            <div class="text_content">
+              <span style="color: var(--color1); font-size: 11px">Legal</span>
+              <span style="color: var(--color1); font-size: 11px">Safty&PrivacyCenter</span>
+              <span style="color: var(--color1); font-size: 11px">Privacy Policy</span>
+              <span style="color: var(--color1); font-size: 11px">Cookies</span>
+              <span style="color: var(--color1); font-size: 11px">About Ads</span>
+              <span style="color: var(--color1); font-size: 11px">Accessibility</span>
+            </div>
+            <div class="below_text">
+              <a class="link1" href="#link">Cookie</a>
+              <button id="bttn3">English</button>
+            </div>
+          </div>
         </div>
         <div class="parts" id="right_content"><h1>Content</h1></div>
         <div class="parts" id="footer_signup"><h1>Footer Sign page</h1></div>
