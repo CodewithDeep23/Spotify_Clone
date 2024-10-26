@@ -22,7 +22,7 @@ html, body{
 .main{
     /* position: relative; */
     height: 100%;
-    background-color: red;
+    /* background-color: red; */
     display: flex;
     justify-content: center;
 }
@@ -48,9 +48,12 @@ html, body{
 #header{
     grid-area: header;
     justify-items: center;
-    background: grey;
+    /* background: grey; */
     display: flex;
     align-items: center;
+    /* gap: 50px; */
+    justify-content: space-between;
+    padding: 0px 30px 0px 30px;
     /* height: 100%; */
     /* width: 100%; */
     /* right: 0; */
@@ -58,19 +61,100 @@ html, body{
     /* position: absolute;
     position: fixed; */
 }
+
+.search_part{
+    display: flex;
+    align-items: center;
+    /* background-color: red; */
+    gap: 10px;
+    padding-left: 150px;
+}
+.search_part #home_img{
+    /* border: 1px solid red; */
+    padding: 12px;
+    border-radius: 50%;
+    background-color: var(--leftScroll);
+}
+#home_img:hover{
+    transform: scale(1.05, 1.05);
+    cursor: pointer;
+}
+.search_part .search_input_part{
+    /* outline: 1px solid blue; */
+    border-radius: 30px;
+    display: flex;
+    padding: 12px 25px 10px 25px;
+    align-items: center;
+    background-color: var(--leftScroll);
+}
+.search_input_part form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+.search_part input{
+    /* padding: 15px 25px 15px 25px; */
+    padding-right: 100px;
+    outline: none;
+    font-size: 15px;
+    border: none;
+    /* border-radius: 50px; */
+    background-color: var(--leftScroll);
+    color: white;
+    
+}
+.login_part{
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+#sign{
+    background-color: black;
+    color: var(--color1);
+    font-size: 20px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 25px;
+}
+#login{
+    background-color: white;
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 25px;
+}
+#sign:hover{
+    color: white;
+    cursor: pointer;
+    transform: scale(1.05, 1.05);
+}
+#login:hover{
+    color: black;
+    cursor: pointer;
+    transform: scale(1.05, 1.05);
+}
+
 #left_content{
     grid-area: left;
-    /* background: var(--leftBgc); */
-    /* position: relative;
-    height: 400px;
-    width: 440px; */
+    /* background: blue; */
+    /* position: relative; */
+    /* height: 400px; */
+    /* width: 440px; */
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
     /* justify-content: space-around; */
     /* width: 100%; */
+    overflow: hidden;
 }
 #left_top_content{
     height: 60%;
+    /* border-radius: 20px; */
 }
 .library{
     height: 30%;
@@ -83,7 +167,7 @@ html, body{
 }
 
 #library_first{
-    transition: all 0.5s cubic-bezier(0.73, 0.04, 0.42, 0.39);
+    transition: all 0.3s cubic-bezier(0.73, 0.04, 0.42, 0.39);
     display: flex;
     align-items: center;
     column-gap: 10px;
@@ -111,6 +195,7 @@ html, body{
 
 .top_bottom{
     background-color: var(--leftBgc);
+    /* background-color: rebeccapurple; */
 }
 .create_browse{
     background-color: var(--leftScroll);
@@ -205,6 +290,8 @@ html, body{
     grid-area: right;
     justify-items: center;
     background: lightseagreen;
+    border-radius: 10px;
+    overflow: hidden;
     /* position: relative;
     height: 400px; */
 
