@@ -235,13 +235,14 @@ html, body{
     border-radius: 30px;
     border: none;
     padding: 7px;
+    font-weight: bold;
 }
 .bttn:hover{
     cursor: pointer;
     transform:scale(1.05, 1.05);
 }
 #bttn1{
-    width: 100px;
+    width: 120px;
 }
 #bttn2{
     width: 150px;
@@ -299,10 +300,18 @@ html, body{
     gap: 10px; */
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: auto auto auto auto auto auto;
+    grid-template-rows: auto auto;
     gap: 10px;
     /* padding: 20px; */
 }
+.first_content_box{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto auto auto;
+    /* background-color: blue; */
+    /* background-color: var(--leftBgc); */
+}
+
 #right_content:hover{
     overflow-y: scroll;
 }
@@ -318,19 +327,22 @@ html, body{
 }
 
 
-.right_content_box{
+/* .right_content_box{
     /* height: 40%; */
-    background-color:darkturquoise;
-    /* padding: 30px; */
-}
-#right_content>:first-child{
-    background-color: var(--leftBgc);
-}
+    /* background-color:darkturquoise; */
+    /* padding: 30px;
+} */
 .first_line{
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     padding: 20px 20px 5px 20px;
+    /* background-color: blue; */
+}
+
+.first_line>:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .artist{
@@ -339,6 +351,7 @@ html, body{
     border-radius: 10px;
     padding: 8px 13px;
     margin-top: 10px;
+    height: 230px;
 }
 .artist:hover{
     background-color: var(--leftScroll);
@@ -348,11 +361,104 @@ html, body{
     display: flex;
     align-items: center;
     padding-left: 10px;
+    /* object-fit: cover; */
 }
-#artist4 img{
+/* .artist_name{
+    padding: 5px 0px 20px 0px;
+} */
+.artist .artist_Image{
     height: 140px;
     object-fit: cover;
 }
+.artImage{
+    position: relative;
+    overflow: hidden;
+    /* display: flex; */
+}
+
+.artist_name p:hover{
+    text-decoration: underline;
+}
+#playSVG{
+    background-color: #1ED760;
+    border-radius: 50%;
+    padding: 13px;
+    position:absolute;
+    bottom: 5px;
+    right: 5px;
+    display: none;
+}
+.artist:hover #playSVG{
+    display: block;
+    animation: play 0.15s linear forwards;
+}
+@keyframes play {
+    from{bottom: 5px; right: 5px;}
+    to{bottom: 12px; right: 5px;}
+}
+
+
+.second_content_box{
+    /* background-color: yellow; */
+    padding: 40px 25px 40px 25px;
+}
+
+.company_part{
+    /* background-color: red; */
+    display: grid;
+    grid-template-columns: auto auto;
+    /* justify-content: space-between; */
+}
+.first_part{
+    /* background-color: blue; */
+    display: flex;
+    gap: 40px;
+    /* width: 80%; */
+}
+.last{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.last h4{
+    user-select: text;
+}
+.last p{
+    color: var(--color1);
+    /* font-size: 10px; */
+}
+.last p:hover{
+    cursor: pointer;
+    color: white;
+    text-decoration: underline;
+}
+.second_part{
+    /* background-color: antiquewhite; */
+    display: flex;
+    align-items: baseline;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+.second_part button{
+    background-color: var(--leftScroll);
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.second_part button:hover{
+    background-color: #727272;
+    cursor: pointer;
+}
+.copyright{
+    padding: 40px 0px;
+    /* background-color:darkgreen; */
+    user-select:text;
+}
+
 #footer_signup{
     grid-area: footer;
     justify-items: center;
