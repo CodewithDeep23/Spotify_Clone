@@ -33,7 +33,7 @@ html, body{
     width: 100%;
     display: grid;
     grid-template-columns: 33% auto;
-    grid-template-rows: 8% 75% auto;
+    grid-template-rows: 8% 78% auto;
     grid-template-areas: "header header"
                         "left right"
                         "footer footer";
@@ -137,6 +137,7 @@ html, body{
     color: black;
     cursor: pointer;
     transform: scale(1.05, 1.05);
+    background-color: #F0F0F0;
 }
 
 #left_content{
@@ -277,14 +278,32 @@ html, body{
     text-decoration: underline;
 }
 
-#bttn3{
-    padding: 7px;
+.bttn3{
+    border: 1px solid var(--color1);
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+    padding: 7px 10px;
+    width: fit-content;
+}
+.bttn3:hover{
+    cursor: pointer;
+    transform:scale(1.05, 1.05);
+    border-color: white;
+}
+.bttn3 button:hover{
+    cursor: pointer;
+}
+.bttn3 button{
+    /* padding: 7px; */
     border: none;
-    width: 100px;
-    border-radius: 20px;
+    /* width: 100px; */
+    /* border-radius: 20px; */
     background-color: #121212;
-    border: 1px solid white;
     color: white;
+    display: flex;
+    align-items: center;
+    gap: 7px;
 }
 
 #right_content{
@@ -468,5 +487,27 @@ html, body{
     height: 100%;
     width: 100%;
     /* bottom: 0px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 15px;
+    background-image: linear-gradient(to right, #AF2896, #509AF4);
+    border-radius: 0px;
 }
+
+#footer_signup .preview{
+    color: white;
+    font-size: 15px;
+}
+#footer_signup button{
+    font-size: 17px;
+    padding: 15px 27px;
+}
+#footer_signup button:hover{
+    background-color: #F0F0F0;
+}
+#footer_signup:hover{
+    cursor: pointer;
+}
+
 
