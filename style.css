@@ -67,7 +67,10 @@ html, body{
     align-items: center;
     /* background-color: red; */
     gap: 10px;
-    padding-left: 150px;
+    padding-left: 200px;
+    width: 100%;
+    max-width: 700px;
+    height: 45px;
 }
 .search_part #home_img{
     /* border: 1px solid red; */
@@ -79,31 +82,58 @@ html, body{
     transform: scale(1.05, 1.05);
     cursor: pointer;
 }
-.search_part .search_input_part{
-    /* outline: 1px solid blue; */
-    border-radius: 30px;
-    display: flex;
-    padding: 12px 25px 10px 25px;
-    align-items: center;
+.search_input_part{
+    overflow: hidden;
+    width: 100%;
+    /* background-color: yellow; */
+    border-radius: 40px;
+}
+.search-bar{
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    /* background-color: blue; */
     background-color: var(--leftScroll);
-}
-.search_input_part form{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    border-radius: 40px;
+    overflow: hidden;
+    height: 37px;
+    padding: 20px 0px;
 }
-.search_part input{
-    /* padding: 15px 25px 15px 25px; */
-    padding-right: 100px;
+
+.search-bar input{
+    flex: 1;
+    border: 0;
     outline: none;
-    font-size: 15px;
-    border: none;
-    /* border-radius: 50px; */
-    background-color: var(--leftScroll);
+    padding: 10px 76px 10px 46px;
+    font-size: 18px;
+    background: transparent;
     color: white;
-    
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
 }
+.search-bar input::placeholder{
+    color: white;
+}
+.search-bar #search-icon{
+    position: absolute;
+    left: 10px;
+    border: 0;
+    background-color: transparent;
+    fill: white;
+    /* background-color: blue; */
+}
+.search-bar #browse-icon{
+    position: absolute;
+    right: 10px;
+    border: 0;
+    background-color: transparent;
+    fill: white;
+    /* background-color: blue; */
+}
+
 .login_part{
     /* background-color: blue; */
     display: flex;
