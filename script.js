@@ -198,6 +198,7 @@ function callCompany() {
 callCompany()
 
 let currentsongs = new Audio();
+let songs;
 // fetch songs from server:
 async function getSongs(){
   let a = await fetch("http://127.0.0.1:5500/Project/Spotify_Clone/songs/")
@@ -218,7 +219,7 @@ async function getSongs(){
 
 function convertSecondsToMinutes(seconds) {
   if(isNaN(seconds) || seconds <0){
-    return `invalid input`
+    return `00`
   }
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = Math.floor(seconds % 60);
@@ -242,7 +243,7 @@ const playMusic = (track, pause=false)=>{
 
 async function main(){
   // get the list of the songs
-  let songs = await getSongs()
+  songs = await getSongs()
   playMusic(songs[0], true)
   // Show all the songs in playlist
   let songUL = document.querySelector("#create_playlist").getElementsByTagName("ul")[0];
@@ -287,6 +288,34 @@ async function main(){
     document.querySelector(".circle").style.left = percent + "%";
     currentsongs.currentTime = ((currentsongs.duration)*percent)/100
   })
+
+  document.querySelector(".hamburger").addEventListener("click", ()=>{
+    document.querySelector("#left_content").style.left = "0";
+  })
+  document.querySelector(".cross").addEventListener("click", ()=>{
+    document.querySelector("#left_content").style.left = "-200%";
+  })
+  document.querySelectorAll("#create_playlist li").forEach((li) => {
+    li.addEventListener("click", () => {
+      document.querySelector(".play-bar").style.display = "block";
+    });
+  });
+
+  prev.addEventListener("click", ()=>{
+    console.log(currentsongs);
+    let index = songs.indexOf(currentsongs.src.split('/').slice(-1) [0])
+    if((index-1) >=0){
+      playMusic(songs[index-1])
+    }
+  })
+  next.addEventListener("click", ()=>{
+    console.log(currentsongs);
+    let index = songs.indexOf(currentsongs.src.split('/').slice(-1) [0])
+    if((index+1) < songs.length){
+      playMusic(songs[index+1])
+    }
+  })
 }
 
 main()
+
