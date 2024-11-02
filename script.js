@@ -196,3 +196,97 @@ function callCompany() {
 }
 
 callCompany()
+
+let currentsongs = new Audio();
+// fetch songs from server:
+async function getSongs(){
+  let a = await fetch("http://127.0.0.1:5500/Project/Spotify_Clone/songs/")
+  let response = await a.text()
+  let div = document.createElement("div");
+  div.innerHTML = response;
+  let as = div.getElementsByTagName("a")
+  let songs = [];
+  for (let index = 0; index < as.length; index++) {
+    const element = as[index];
+    if(element.href.endsWith(".mp3")){
+      songs.push(element.href.split("/songs/")[1])
+    }
+    
+  }
+  return songs;
+}
+
+function convertSecondsToMinutes(seconds) {
+  if(isNaN(seconds) || seconds <0){
+    return `invalid input`
+  }
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.floor(seconds % 60);
+
+  const formattedMinutes = String(minutes).padStart(2, '0');
+  const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+
+  return `${formattedMinutes}:${formattedSeconds}`;
+}
+
+const playMusic = (track, pause=false)=>{
+  // let audio = new Audio("/Project/Spotify_Clone/songs/" + track)
+  currentsongs.src = "/Project/Spotify_Clone/songs/" + track;
+  if(!pause){
+    currentsongs.play()
+    play.src = "Images/pause.svg"
+  }
+  document.querySelector(".song-info").innerHTML = decodeURI(track);
+  document.querySelector(".song-time").innerHTML = "00:12 / 00:55"
+}
+
+async function main(){
+  // get the list of the songs
+  let songs = await getSongs()
+  playMusic(songs[0], true)
+  // Show all the songs in playlist
+  let songUL = document.querySelector("#create_playlist").getElementsByTagName("ul")[0];
+  for (const song of songs) {
+    songUL.innerHTML = songUL.innerHTML + `<li>
+    <div class="info">
+      <div>${song.replaceAll("%20", " ")}</div>
+    </div>
+  </li>`
+  }
+
+  Array.from(document.querySelector("#create_playlist").getElementsByTagName("li")).forEach(e=>{
+    e.addEventListener("click", element=>{
+      console.log(e.querySelector(".info").firstElementChild.innerHTML);
+      playMusic(e.querySelector(".info").firstElementChild.innerHTML.split("/songs/")[0])
+    })
+  })
+  // play the first songs
+  // var audio = new Audio(songs[0]);
+  // audio.play();
+
+  play.addEventListener("click", ()=>{
+    if(currentsongs.paused){
+      currentsongs.play()
+      play.src = "Images/pause.svg"
+    }
+    else{
+      currentsongs.pause()
+      play.src = "Images/playbutton.svg"
+    }
+  })
+
+  // Timeupdate 
+  currentsongs.addEventListener("timeupdate", ()=>{
+    console.log(currentsongs.currentTime, currentsongs.duration);
+    document.querySelector(".song-time").innerHTML = `${convertSecondsToMinutes(currentsongs.currentTime)}/${convertSecondsToMinutes(currentsongs.duration)}`
+    document.querySelector(".circle").style.left = (currentsongs.currentTime/currentsongs.duration)*98 + "%";
+  })
+
+  document.querySelector(".seek-bar").addEventListener("click", e=>{
+    let percent = (e.offsetX/e.target.getBoundingClientRect().width) * 100;
+    document.querySelector(".circle").style.left = percent + "%";
+    currentsongs.currentTime = ((currentsongs.duration)*percent)/100
+  })
+}
+
+main()
