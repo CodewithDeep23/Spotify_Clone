@@ -20,9 +20,9 @@ document.querySelector(".search-bar").addEventListener("mouseleave", () => {
 })
 
 
-function createArtist(image, Name, artist) {
+function createArtist(image, Name, artist, fold) {
   let html = `
-  <div class="artist" id="${artist}">
+  <div data-folder="${fold}" class="artist" id="${artist}">
   <div class="artImage">
   <img id="playSVG" src="Images/play.svg" alt=""></img>
   <img class="artist_Image" style="width: 140px; border-radius: 50%;" src="${image}" alt=""></div>
@@ -99,11 +99,11 @@ function rightContent() {
               <div class="artist_box artist_box1">
               </div>
             </div>`
-  createArtist("Images/pritam.jpeg", "Pritam", "artist1")
-  createArtist("Images/sachin.jpeg", "Sachin-Jigar", "artist2")
-  createArtist("Images/rehman.jpeg", "AR Rehman", "artist3")
-  createArtist("Images/Arjit.jpeg", "Arjit Singh", "artist4")
-  createArtist("Images/Atif.jpeg", "Atif Aslam", "artist5")
+  createArtist("Images/pritam.jpeg", "Pritam", "artist1", "Pritam")
+  createArtist("Images/sachin.jpeg", "Sachin-Jigar", "artist2", "ncs")
+  createArtist("Images/rehman.jpeg", "AR Rehman", "artist3", "Rehman")
+  createArtist("Images/Arjit.jpeg", "Arjit Singh", "artist4", "Arjit")
+  createArtist("Images/Atif.jpeg", "Atif Aslam", "artist5", "Atif")
   // Albums part
   right.innerHTML = right.innerHTML + `<div class="right_content_box" id="right2">
               <div class="first_line">
@@ -208,7 +208,7 @@ async function getSongs(folder){
   let div = document.createElement("div");
   div.innerHTML = response;
   let as = div.getElementsByTagName("a")
-  let songs = [];
+  songs = [];
   for (let index = 0; index < as.length; index++) {
     const element = as[index];
     if(element.href.endsWith(".mp3")){
@@ -216,7 +216,25 @@ async function getSongs(folder){
     }
     
   }
-  return songs;
+  // Show all the songs in playlist
+  let songUL = document.querySelector("#create_playlist").getElementsByTagName("ul")[0];
+  songUL.innerHTML = "";
+  for (const song of songs) {
+    songUL.innerHTML = songUL.innerHTML + `<li>
+    <div class="info">
+      <div>${song.replaceAll("%20", " ")}</div>
+    </div>
+  </li>`
+  }
+
+  // attach eventlistener to each songs
+  Array.from(document.querySelector("#create_playlist").getElementsByTagName("li")).forEach(e=>{
+    e.addEventListener("click", element=>{
+      console.log(e.querySelector(".info").firstElementChild.innerHTML);
+      playMusic(e.querySelector(".info").firstElementChild.innerHTML.split("/songs/")[0])
+    })
+  })
+  
 }
 
 function convertSecondsToMinutes(seconds) {
@@ -243,26 +261,11 @@ const playMusic = (track, pause=false)=>{
   document.querySelector(".song-time").innerHTML = "00:12 / 00:55"
 }
 
-async function main(songFolder){
+async function main(){
   // get the list of the songs
-  songs = await getSongs(`${songFolder}`)
+  await getSongs("Atif")
   playMusic(songs[0], true)
-  // Show all the songs in playlist
-  let songUL = document.querySelector("#create_playlist").getElementsByTagName("ul")[0];
-  for (const song of songs) {
-    songUL.innerHTML = songUL.innerHTML + `<li>
-    <div class="info">
-      <div>${song.replaceAll("%20", " ")}</div>
-    </div>
-  </li>`
-  }
 
-  Array.from(document.querySelector("#create_playlist").getElementsByTagName("li")).forEach(e=>{
-    e.addEventListener("click", element=>{
-      console.log(e.querySelector(".info").firstElementChild.innerHTML);
-      playMusic(e.querySelector(".info").firstElementChild.innerHTML.split("/songs/")[0])
-    })
-  })
   // play the first songs
   // var audio = new Audio(songs[0]);
   // audio.play();
@@ -297,12 +300,24 @@ async function main(songFolder){
   document.querySelector(".cross").addEventListener("click", ()=>{
     document.querySelector("#left_content").style.left = "-200%";
   })
-  document.querySelectorAll("#create_playlist li").forEach((li) => {
-    li.addEventListener("click", () => {
-      document.querySelector(".play-bar").style.display = "block";
-    });
-  });
 
+  // document.querySelectorAll("#create_playlist li").forEach((li) => {
+  //   li.addEventListener("click", () => {
+  //     document.querySelector(".play-bar").style.display = "block";
+  //   });
+  // });
+
+  document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e)=>{
+    console.log(e);
+    currentsongs.volume = parseInt(e.target.value)/100;
+  })
+
+  Array.from(document.getElementsByClassName("artist")).forEach(e => {
+    e.addEventListener("click", async item=>{
+      songs = await getSongs(`${item.currentTarget.dataset.folder}`)
+      
+    })
+  });
   prev.addEventListener("click", ()=>{
     console.log(currentsongs);
     let index = songs.indexOf(currentsongs.src.split('/').slice(-1) [0])
@@ -317,14 +332,9 @@ async function main(songFolder){
       playMusic(songs[index+1])
     }
   })
-
-  document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e)=>{
-    console.log(e);
-    currentsongs.volume = parseInt(e.target.value)/100;
-  })
 }
 
-main("Arjit")
+main()
 
 // function fun(fol){
 //   document.querySelector(`.${fol}`).addEventListener("click", ()=>{

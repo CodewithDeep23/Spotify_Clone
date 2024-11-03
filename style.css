@@ -632,7 +632,7 @@ body {
     bottom: 86px;
     margin-left: 38px;
     border-radius: 35px;
-    display: none;
+    /* display: none; */
 }
 
 .above-bar {
