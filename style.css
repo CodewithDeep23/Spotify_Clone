@@ -640,7 +640,7 @@ body {
     justify-content: space-between;
     color: white;
     font-size: 12px;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .seek {
@@ -689,6 +689,24 @@ body {
     position: fixed;
     margin: 0% 24%;
     /* margin-right: 120px; */
+}
+
+.song-vol {
+    display: flex;
+    align-items: flex-start;
+    margin-right: 8px;
+    justify-content: center;
+    gap: 6px;
+}
+
+.volume {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.volume:hover {
+    cursor: pointer;
 }
 
 #footer_signup {
@@ -772,7 +790,7 @@ body {
 
     .search-bar {
         width: 100%;
-        max-width: 500px;
+        max-width: 30vw;
         height: 37px;
         padding: 20px 0px;
     }
@@ -791,7 +809,7 @@ body {
         position: absolute;
         left: -200%;
         transition: all 0.3s;
-        width: 40vw;
+        width: 70vw;
     }
 
     #footer_signup {
@@ -850,7 +868,7 @@ body {
 @media (max-width: 430px) {
     .above-bar {
         flex-direction: column;
-        gap: 60px;
+        gap: 45px;
         /* height: 25px; */
         justify-content: flex-end;
         align-items: center;
@@ -862,7 +880,7 @@ body {
 
     .song-button {
         margin: 0;
-        bottom: 112px;
+        bottom: 145px;
     }
 
     .song-info {
@@ -874,10 +892,52 @@ body {
         text-align: center;
         width: 20vw;
     }
+
+    .search_part {
+        justify-content: flex-start;
+        padding-left: 0px;
+    }
+
+    .volume {
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .song-vol {
+        width: 100vw;
+        justify-content: space-between;
+        padding: 0px 23px;
+        align-items: center;
+    }
 }
 
 @media (max-width: 730px) {
-    .preview h4{
+    .preview h4 {
         font-size: 10px;
+    }
+
+    .login_part {
+        display: none;
+    }
+
+    .search_part {
+        max-width: 378px;
+        justify-content: flex-start;
+    }
+
+    #header {
+        justify-content: flex-start;
+    }
+
+    .song-vol {
+        /* justify-content: space-between; */
+        /* padding: 0px 23px; */
+        align-items: center;
+    }
+}
+
+@media (max-width: 360px) {
+    .song-button{
+        bottom: 130px;
     }
 }
