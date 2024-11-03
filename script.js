@@ -199,9 +199,11 @@ callCompany()
 
 let currentsongs = new Audio();
 let songs;
+let currFolder;
 // fetch songs from server:
-async function getSongs(){
-  let a = await fetch("http://127.0.0.1:5500/Project/Spotify_Clone/songs/")
+async function getSongs(folder){
+  currFolder = folder;
+  let a = await fetch(`http://127.0.0.1:5500/Project/Spotify_Clone/songs/${folder}/`)
   let response = await a.text()
   let div = document.createElement("div");
   div.innerHTML = response;
@@ -210,7 +212,7 @@ async function getSongs(){
   for (let index = 0; index < as.length; index++) {
     const element = as[index];
     if(element.href.endsWith(".mp3")){
-      songs.push(element.href.split("/songs/")[1])
+      songs.push(element.href.split(`/songs/${folder}/`)[1])
     }
     
   }
@@ -232,7 +234,7 @@ function convertSecondsToMinutes(seconds) {
 
 const playMusic = (track, pause=false)=>{
   // let audio = new Audio("/Project/Spotify_Clone/songs/" + track)
-  currentsongs.src = "/Project/Spotify_Clone/songs/" + track;
+  currentsongs.src = `/Project/Spotify_Clone/songs/${currFolder}/` + track;
   if(!pause){
     currentsongs.play()
     play.src = "Images/pause.svg"
@@ -241,9 +243,9 @@ const playMusic = (track, pause=false)=>{
   document.querySelector(".song-time").innerHTML = "00:12 / 00:55"
 }
 
-async function main(){
+async function main(songFolder){
   // get the list of the songs
-  songs = await getSongs()
+  songs = await getSongs(`${songFolder}`)
   playMusic(songs[0], true)
   // Show all the songs in playlist
   let songUL = document.querySelector("#create_playlist").getElementsByTagName("ul")[0];
@@ -322,5 +324,12 @@ async function main(){
   })
 }
 
-main()
+main("Arjit")
 
+// function fun(fol){
+//   document.querySelector(`.${fol}`).addEventListener("click", ()=>{
+
+//   })
+// }
+
+// fun("artist5");
