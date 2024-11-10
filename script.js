@@ -265,6 +265,7 @@ async function main(){
   // get the list of the songs
   await getSongs("Atif")
   playMusic(songs[0], true)
+  // console.log(songs);
 
   // play the first songs
   // var audio = new Audio(songs[0]);
@@ -307,15 +308,11 @@ async function main(){
   //   });
   // });
 
-  document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e)=>{
-    console.log(e);
-    currentsongs.volume = parseInt(e.target.value)/100;
-  })
-
+  
   Array.from(document.getElementsByClassName("artist")).forEach(e => {
     e.addEventListener("click", async item=>{
       songs = await getSongs(`${item.currentTarget.dataset.folder}`)
-      
+      console.log(songs);
     })
   });
   prev.addEventListener("click", ()=>{
@@ -327,9 +324,30 @@ async function main(){
   })
   next.addEventListener("click", ()=>{
     console.log(currentsongs);
+    console.log(songs);
     let index = songs.indexOf(currentsongs.src.split('/').slice(-1) [0])
     if((index+1) < songs.length){
       playMusic(songs[index+1])
+    }
+  })
+  
+  // add range to volume
+  document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e)=>{
+    console.log(e);
+    currentsongs.volume = parseInt(e.target.value)/100;
+  })
+
+  // Add eventlisneer to volume button
+  document.querySelector(".volume>img").addEventListener("click", e=>{
+    if(e.target.src.includes("volume.svg")){
+      e.target.src=e.target.src.replace("volume.svg", "mute.svg")
+      currentsongs.volume = 0;
+      document.querySelector(".range").getElementsByTagName("input")[0].value = 0;
+    }
+    else{
+      e.target.src=e.target.src.replace("mute.svg", "volume.svg")
+      currentsongs.volume = 0.1;
+      document.querySelector(".range").getElementsByTagName("input")[0].value = 20;
     }
   })
 }
